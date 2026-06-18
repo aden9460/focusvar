@@ -63,14 +63,20 @@ The two backbones inherit dependencies from their original implementations. Star
 pip install -r requirements.txt
 ```
 
-For HART fused kernels:
 
-```bash
-cd HART/hart/kernels
-pip install -e .
-```
 
 ## Supported Backbones
+
+
+### Infinity
+
+```bash
+cd Infinity
+python inference.py
+```
+
+The Infinity directory is kept as a minimal inference backend. Update checkpoint paths and generation settings in `inference.py` before running.
+
 
 ### HART
 
@@ -84,56 +90,8 @@ python inference.py --model_path /path/to/model \
 
 FocusVAR support is integrated into the HART inference path and can be enabled through the model's acceleration configuration.
 
-### Infinity
 
-```bash
-cd Infinity
-python inference.py
-```
 
-The Infinity directory is kept as a minimal inference backend. Update checkpoint paths and generation settings in `inference.py` before running.
-
-## Method
-
-FocusVAR targets the redundancy of full two-branch CFG during visual autoregressive decoding. Instead of running conditional and unconditional branches throughout all scales and layers, FocusVAR:
-
-1. runs standard CFG in early or selected high-impact regions,
-2. performs a guided fusion at a configured scale/layer boundary,
-3. trims the KV cache to the conditional branch,
-4. continues the remaining computation in conditional-only mode,
-5. optionally applies token-focused computation at large scales to further reduce latency.
-
-In this repository, token selection is part of the FocusVAR acceleration pipeline. The implementation supports both feature-importance-based selection and CFG-difference-based selection, but they are exposed as FocusVAR components rather than separate methods.
-
-## Key Files
-
-- `HART/hart/modules/models/transformer/hart_transformer_t2i.py`  
-  HART autoregressive inference, focused CFG collapse, and acceleration configuration.
-
-- `HART/hart/modules/networks/focusvar_utils.py`  
-  Token selection, merge, and unmerge utilities used by the HART backend.
-
-- `HART/hart/modules/networks/focusvar_basic.py`  
-  HART transformer block integration for token-focused computation.
-
-- `Infinity/infinity/models/infinity.py`  
-  Infinity autoregressive inference path with FocusVAR controls.
-
-- `Infinity/infinity/models/focusvar_utils.py`  
-  Token selection and restoration utilities for the Infinity backend.
-
-## Citation
-
-If you use this repository, please cite FocusVAR. The final BibTeX entry will be updated when available.
-
-```bibtex
-@article{focusvar2026,
-  title={FocusVAR: Focused Classifier-Free Guidance for Efficient Visual Autoregressive Generation},
-  author={TBD},
-  journal={TBD},
-  year={2026}
-}
-```
 
 ## License
 
