@@ -4,7 +4,6 @@
 
 **Focused Classifier-Free Guidance for Efficient Visual Autoregressive Generation**
 
-[Getting Started](#getting-started) · [Supported Backbones](#supported-backbones) · [Method](#method) · [Citation](#citation) · [License](#license)
 
 </div>
 
