@@ -82,25 +82,7 @@ python inference.py --model_path /path/to/model \
   --sample_folder_dir ./outputs/hart
 ```
 
-FocusVAR controls are exposed through `configure_inference_acceleration(...)` in the HART model:
-
-```python
-model.configure_inference_acceleration(
-    enable_fastvar_compute_merge=True,
-    enable_spacevar_compute_merge=False,
-    fastvar_ratio_by_scale={48: 0.4, 64: 0.5},
-    fastvar_prune_scales={48, 64},
-    fastvar_start_layer=1,
-    enable_layerwise_cond_only_collapse=True,
-    cond_only_start_scale=48,
-    cond_only_start_layer=5,
-)
-```
-
-Recommended starting points:
-
-- conservative: `cond_only_start_scale=48`, `cond_only_start_layer=15`
-- faster: `cond_only_start_scale=36`, `cond_only_start_layer=5`
+FocusVAR support is integrated into the HART inference path and can be enabled through the model's acceleration configuration.
 
 ### Infinity
 
@@ -128,16 +110,16 @@ In this repository, token selection is part of the FocusVAR acceleration pipelin
 - `HART/hart/modules/models/transformer/hart_transformer_t2i.py`  
   HART autoregressive inference, focused CFG collapse, and acceleration configuration.
 
-- `HART/hart/modules/networks/fastvar_utils.py`  
+- `HART/hart/modules/networks/focusvar_utils.py`  
   Token selection, merge, and unmerge utilities used by the HART backend.
 
-- `HART/hart/modules/networks/fastvar_basic.py`  
+- `HART/hart/modules/networks/focusvar_basic.py`  
   HART transformer block integration for token-focused computation.
 
 - `Infinity/infinity/models/infinity.py`  
   Infinity autoregressive inference path with FocusVAR controls.
 
-- `Infinity/infinity/models/fastvar_utils.py`  
+- `Infinity/infinity/models/focusvar_utils.py`  
   Token selection and restoration utilities for the Infinity backend.
 
 ## Citation
