@@ -1,0 +1,64 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+build/
+dist/
+.eggs/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Environments
+.env
+.env.*
+.venv/
+venv/
+env/
+conda/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+*.swp
+
+# Generated outputs
+output/
+outputs/
+results/
+runs/
+logs/
+samples/
+sample_outputs/
+wandb/
+tensorboard/
+*.log
+*.pid
+
+# Model checkpoints and large assets
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.bin
+*.onnx
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.npz
+*.npy
+
+# Datasets / benchmark downloads
+**/mjhq30k_imgs/
+**/mjhq30k_imgs.zip
+**/ImageReward.pt
+
+# Temporary media
+*.tmp
+.tmp/
+tmp/

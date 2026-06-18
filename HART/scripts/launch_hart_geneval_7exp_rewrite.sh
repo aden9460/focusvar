@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -euo pipefail
+RUN_ROOT="/opt/data/private/task/daily3/semanvar/HART/output/geneval_hart_rewrite_7exp_20260510"
+mkdir -p "$RUN_ROOT/logs"
+nohup bash "/opt/data/private/task/daily3/semanvar/HART/scripts/run_hart_geneval_00_rewrite_baseline.sh" > "$RUN_ROOT/logs/00_rewrite_baseline.log" 2>&1 & echo $! > "$RUN_ROOT/logs/00_rewrite_baseline.pid"
+echo "launched 00_rewrite_baseline gpu=0 pid=$(cat "$RUN_ROOT/logs/00_rewrite_baseline.pid")"
+nohup bash "/opt/data/private/task/daily3/semanvar/HART/scripts/run_hart_geneval_01_fastvar_48r040_64r050.sh" > "$RUN_ROOT/logs/01_fastvar_48r040_64r050.log" 2>&1 & echo $! > "$RUN_ROOT/logs/01_fastvar_48r040_64r050.pid"
+echo "launched 01_fastvar_48r040_64r050 gpu=2 pid=$(cat "$RUN_ROOT/logs/01_fastvar_48r040_64r050.pid")"
+nohup bash "/opt/data/private/task/daily3/semanvar/HART/scripts/run_hart_geneval_02_spacevar_48r040_64r050.sh" > "$RUN_ROOT/logs/02_spacevar_48r040_64r050.log" 2>&1 & echo $! > "$RUN_ROOT/logs/02_spacevar_48r040_64r050.pid"
+echo "launched 02_spacevar_48r040_64r050 gpu=3 pid=$(cat "$RUN_ROOT/logs/02_spacevar_48r040_64r050.pid")"
+nohup bash "/opt/data/private/task/daily3/semanvar/HART/scripts/run_hart_geneval_03_collapse_s36_l5.sh" > "$RUN_ROOT/logs/03_collapse_s36_l5.log" 2>&1 & echo $! > "$RUN_ROOT/logs/03_collapse_s36_l5.pid"
+echo "launched 03_collapse_s36_l5 gpu=4 pid=$(cat "$RUN_ROOT/logs/03_collapse_s36_l5.pid")"
+nohup bash "/opt/data/private/task/daily3/semanvar/HART/scripts/run_hart_geneval_04_collapse_s36_l15.sh" > "$RUN_ROOT/logs/04_collapse_s36_l15.log" 2>&1 & echo $! > "$RUN_ROOT/logs/04_collapse_s36_l15.pid"
+echo "launched 04_collapse_s36_l15 gpu=5 pid=$(cat "$RUN_ROOT/logs/04_collapse_s36_l15.pid")"
+nohup bash "/opt/data/private/task/daily3/semanvar/HART/scripts/run_hart_geneval_05_collapse_s36_l5_spacevar_48r040_64r050.sh" > "$RUN_ROOT/logs/05_collapse_s36_l5_spacevar_48r040_64r050.log" 2>&1 & echo $! > "$RUN_ROOT/logs/05_collapse_s36_l5_spacevar_48r040_64r050.pid"
+echo "launched 05_collapse_s36_l5_spacevar_48r040_64r050 gpu=6 pid=$(cat "$RUN_ROOT/logs/05_collapse_s36_l5_spacevar_48r040_64r050.pid")"
+nohup bash "/opt/data/private/task/daily3/semanvar/HART/scripts/run_hart_geneval_06_collapse_s36_l15_spacevar_48r040_64r050.sh" > "$RUN_ROOT/logs/06_collapse_s36_l15_spacevar_48r040_64r050.log" 2>&1 & echo $! > "$RUN_ROOT/logs/06_collapse_s36_l15_spacevar_48r040_64r050.pid"
+echo "launched 06_collapse_s36_l15_spacevar_48r040_64r050 gpu=7 pid=$(cat "$RUN_ROOT/logs/06_collapse_s36_l15_spacevar_48r040_64r050.pid")"

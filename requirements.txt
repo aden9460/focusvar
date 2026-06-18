@@ -1,0 +1,14 @@
+# FocusVAR uses the dependency stacks of the supported backbone projects.
+# Install the requirements for HART or Infinity according to the backend you use.
+# Common packages used by the scripts include:
+torch
+torchvision
+transformers
+huggingface_hub
+numpy
+scipy
+Pillow
+tqdm
+opencv-python
+flash-attn
+xformers
